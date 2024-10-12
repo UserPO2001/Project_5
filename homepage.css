@@ -5,6 +5,7 @@
     flex-direction: column;
     height: 100%;
     margin-top: 20px;
+    background-color: blue;
 }
 
 .Welkom-div h1 {
@@ -80,7 +81,7 @@
     transform-origin: 50% 50% 0;
 }
 
-.icon2{
+.icon2 {
 
 	position:fixed;
 	padding: 0;
@@ -93,4 +94,25 @@
     right: 10%; /* Align to the left */
     top: 50%; /* Center vertically */
 	transform: rotate(45deg);
+}
+
+.tips-parent {
+    display: flex;
+    flex-direction: column;
+    background-color: darkgrey;
+    width: 700px;
+    height: 300px;
+    margin-top: 20px;
+}
+
+.tips {
+    background-color: lightblue; /* Change to light blue */
+    display: flex;
+    justify-content: center;
+    position: relative;
+    
+    margin: 3% 5%; 
+    min-width: 90%; 
+    height: 90%;
+    
 }

@@ -8,16 +8,10 @@
     background-color: rgb(179, 255, 0);
 }
 
-.bedrijf-div {
-    display: flex;
-    flex-direction: column;
-    background-color: darkgrey;
-    width: 300px;
-    height: 100px;
-    
-}
+
 
 body {
+    font-family: 'Roboto', sans-serif;
     display: grid;
     place-items: center; /* Center items horizontally and vertically */
     height: 50vh; /* Full height of the viewport */
@@ -29,14 +23,15 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: darkgrey;
-    width: 700px;
+    background-color: rgb(0, 58, 58);
+    width: 500px;
     height: 100px;
+    border-radius: 50px;
     /* No need for margin-top */
 }
 
-.bedrijf-naam {
-    background-color: red;
+.bedrijf-naam, h1 {
+    /* background-color: red; */
     display: flex;
     justify-content: center;
     position: relative;
@@ -44,6 +39,11 @@ body {
     margin: auto; 
     min-width: 90%; 
     height: 50%; 
+
+    color: white; /* Text color */
+
+    font-weight: bold; /* Make text bold */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Add shadow */
 
 }
 
@@ -69,31 +69,40 @@ body {
         
     }
 
-    .username {
-    background-color: red;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    left: 0;
-   
+    .username, .password {
+        background-color: black; /* Fill color */
+        color: white; /* Text color */
+        width: 50%; 
+        height: 100%; 
+        border: none;
+        outline: none;
+        box-sizing: border-box; /* Include padding in width and height */
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.5em;
+        text-align: center; /* Center the placeholder text horizontally */
+        padding: 10px 0; /* Add padding to center the text vertically */
+    }
     
-    width: 50%;
+    ::placeholder {
+        color: white; /* Color of the placeholder text */
+        opacity: 0.6; /* Make placeholder a bit transparent */
+        text-align: center; /* Ensure placeholders are horizontally centered */
+    }
+
+
+
+.login button {
     height: 100%;
+    font-size: 1em; 
+    color: white; 
+    background-color: #007BFF; 
+    border: none;
     
-    
+    cursor: pointer; 
+    transition: background-color 0.3s;
 }
 
-.password {
-    background-color: blue;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    right: 0;
-   
-    
-    width: 50%;
-    height: 100%;
-    
-    
+.login button:hover {
+    background-color: #0056b3; 
 }
 

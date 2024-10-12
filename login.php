@@ -12,17 +12,19 @@
     <!--  Bedrijfs naam DIV -->
     <div class="bedrijf-div">
         <div class="bedrijf-naam">
-            <!-- <h1>Maatschappij</h1> -->
+            <h1>Energy With You</h1>
         </div>
     </div>
 
-    <!-- login DIVS -->
     <div class="login-parent">
-        <div class="field-parent">
-            <div class="username"></div>
-        <div class="password"></div>
+    <div class="field-parent">
+        <input type="text" class="username" placeholder="Username" />
+        <input type="password" class="password" placeholder="Password" />
+        <div class="login">
+            <button type="button">Login</button>
         </div>
     </div>
+</div>
 
 </div>
 

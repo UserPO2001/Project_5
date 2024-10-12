@@ -104,6 +104,11 @@ body {
         text-align: center; /* Ensure placeholders are horizontally centered */
     }
 
+    .username:focus, .password:focus {
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Soft blue glow */
+    }
+    
+
 
 
 .login button {

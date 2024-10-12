@@ -5,7 +5,7 @@
     flex-direction: column;
     height: 100%;
     margin-top: 20px;
-    background-color: rgb(179, 255, 0);
+    /* background-color: rgb(179, 255, 0); */
 }
 
 
@@ -50,14 +50,14 @@ body {
 .login-parent {
         display: flex;
         flex-direction: column;
-        background-color: darkgrey;
+        /* background-color: darkgrey; */
         width: 350px;
         height: 125px;
         margin-top: 20px;
     }
 
     .field-parent {
-        background-color: rgb(51, 51, 51);
+        /* background-color: rgb(51, 51, 51); */
         display: flex;
         justify-content: center;
         position: relative;
@@ -69,18 +69,33 @@ body {
         
     }
 
-    .username, .password {
-        background-color: black; /* Fill color */
-        color: white; /* Text color */
+    .username {
+        background-color: black; 
+        color: white; 
         width: 50%; 
         height: 100%; 
         border: none;
         outline: none;
-        box-sizing: border-box; /* Include padding in width and height */
+        box-sizing: border-box; 
         font-family: 'Roboto', sans-serif;
         font-size: 1.5em;
-        text-align: center; /* Center the placeholder text horizontally */
-        padding: 10px 0; /* Add padding to center the text vertically */
+        text-align: center; 
+        border-top-left-radius: 50px;  /* Round top-left corner */
+        border-bottom-left-radius: 50px; /* Round bottom-left corner */
+    }
+    
+    .password {
+        background-color: black; 
+        color: white; 
+        width: 50%; 
+        height: 100%; 
+        border: none;
+        outline: none;
+        box-sizing: border-box; 
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.5em;
+        text-align: center;
+       
     }
     
     ::placeholder {
@@ -100,9 +115,16 @@ body {
     
     cursor: pointer; 
     transition: background-color 0.3s;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px; 
 }
 
 .login button:hover {
     background-color: #0056b3; 
+}
+
+.login button:active {
+    transform: translateY(1px); /* Moves the button down to simulate being pressed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shortens the shadow to give a pressed effect */
 }
 

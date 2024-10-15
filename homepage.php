@@ -1,51 +1,110 @@
 <?php
 session_start();
 
-// Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "project5";
+// Database class to handle the connection
+class Database {
+    private $conn;
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    public function __construct($servername, $username, $password, $dbname) {
+        $this->conn = new mysqli($servername, $username, $password, $dbname);
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
+        }
+    }
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    public function getConnection() {
+        return $this->conn;
+    }
+}
+
+// User class to handle user data
+class User {
+    private $username;
+    private $userId;
+    private $firstName;
+    private $db;
+
+    public function __construct($username, $db) {
+        $this->username = $username;
+        $this->db = $db;
+        $this->fetchUserData();
+    }
+
+    private function fetchUserData() {
+        $stmt = $this->db->prepare("SELECT user_id, First_name FROM users WHERE Username = ?");
+        $stmt->bind_param("s", $this->username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            $this->userId = $user['user_id'];
+            $this->firstName = $user['First_name'];
+        } else {
+            die("User not found.");
+        }
+    }
+
+    public function getFirstName() {
+        return $this->firstName;
+    }
+
+    public function getUserId() {
+        return $this->userId;
+    }
+}
+
+// Consumption class to handle fetching consumption data
+class Consumption {
+    private $userId;
+    private $electricityConsumed;
+    private $waterConsumed;
+    private $db;
+
+    public function __construct($userId, $db) {
+        $this->userId = $userId;
+        $this->db = $db;
+        $this->fetchConsumptionData();
+    }
+
+    private function fetchConsumptionData() {
+        $stmt = $this->db->prepare("SELECT electricity_consumed_kWh, water_consumed_m3 FROM consumption WHERE user_id = ?");
+        $stmt->bind_param("i", $this->userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $consumption = $result->fetch_assoc();
+            $this->electricityConsumed = $consumption['electricity_consumed_kWh'];
+            $this->waterConsumed = $consumption['water_consumed_m3'];
+        } else {
+            $this->electricityConsumed = 0;
+            $this->waterConsumed = 0;
+        }
+    }
+
+    public function getElectricityConsumed() {
+        return $this->electricityConsumed;
+    }
+
+    public function getWaterConsumed() {
+        return $this->waterConsumed;
+    }
 }
 
 // Check if the user is logged in
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 
-    // Fetch user data
-    $stmt = $conn->prepare("SELECT user_id, First_name FROM users WHERE Username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // Create a Database object
+    $db = new Database("localhost", "root", "", "project5");
+    $conn = $db->getConnection();
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        $userId = $user['user_id'];
-        $firstName = $user['First_name'];
+    // Create a User object
+    $user = new User($username, $conn);
 
-        // Fetch consumption data for this user
-        $stmt = $conn->prepare("SELECT electricity_consumed_kWh, water_consumed_m3 FROM consumption WHERE user_id = ?");
-        $stmt->bind_param("i", $userId);
-        $stmt->execute();
-        $consumptionResult = $stmt->get_result();
-
-        if ($consumptionResult->num_rows > 0) {
-            $consumption = $consumptionResult->fetch_assoc();
-            $electricityConsumed = $consumption['electricity_consumed_kWh'];
-            $waterConsumed = $consumption['water_consumed_m3'];
-        } else {
-            $electricityConsumed = 0;
-            $waterConsumed = 0;
-        }
-    } else {
-        die("User not found.");
-    }
+    // Create a Consumption object
+    $consumption = new Consumption($user->getUserId(), $conn);
 } else {
     header("Location: login.php");
     exit();
@@ -65,17 +124,17 @@ if (isset($_SESSION['username'])) {
 <div class="centre frame-div">
     <!-- Welkom *User* DIV -->
     <div class="Welkom-div">
-        <h1>Welcome, <?php echo htmlspecialchars($firstName); ?>!</h1>
+        <h1>Welcome, <?php echo htmlspecialchars($user->getFirstName()); ?>!</h1>
     </div>
 
     <!-- Use DIVS -->
     <div class="use-parent">
         <div class="electricitykwh">
-            <div>Uw verbruik is <?php echo $electricityConsumed; ?> kWh</div>
+            <div>Uw verbruik is <?php echo $consumption->getElectricityConsumed(); ?> kWh</div>
             <div class="icon1"></div>
         </div>
         <div class="waterm3">
-            <div>Uw verbruik is <?php echo $waterConsumed; ?> m³</div>
+            <div>Uw verbruik is <?php echo $consumption->getWaterConsumed(); ?> m³</div>
             <div class="icon2"></div>
         </div>
     </div>

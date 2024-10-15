@@ -55,7 +55,7 @@ class User {
 }
 
 // Consumption class to handle fetching consumption data
-class Consumption {
+  class Consumption {
     private $userId;
     private $electricityConsumed;
     private $waterConsumed;
@@ -117,8 +117,8 @@ if (isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wireframe Layout</title>
-    <link rel="stylesheet" href="homepage.css"> <!-- Linking external CSS file -->
-</head>
+    <link rel="stylesheet" type="text/css" href="homepage.css?<?php echo time(); ?>" />
+    </head>
 <body>
 
 <div class="centre frame-div">
@@ -130,11 +130,11 @@ if (isset($_SESSION['username'])) {
     <!-- Use DIVS -->
     <div class="use-parent">
         <div class="electricitykwh">
-            <div>Uw verbruik is <?php echo $consumption->getElectricityConsumed(); ?> kWh</div>
+            <div>Uw verbruik: <?php echo $consumption->getElectricityConsumed(); ?> kWh</div>
             <div class="icon1"></div>
         </div>
         <div class="waterm3">
-            <div>Uw verbruik is <?php echo $consumption->getWaterConsumed(); ?> m³</div>
+            <div>Uw verbruik: <?php echo $consumption->getWaterConsumed(); ?> m³</div>
             <div class="icon2"></div>
         </div>
     </div>

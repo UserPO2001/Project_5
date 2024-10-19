@@ -120,30 +120,51 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" type="text/css" href="homepage.css?<?php echo time(); ?>" />
     </head>
 <body>
+<script src="animation.js" defer></script>
+    <div class="centre frame-div">
 
-<div class="centre frame-div">
-    <!-- Welkom *User* DIV -->
-    <div class="Welkom-div">
-        <h1>Welcome, <?php echo htmlspecialchars($user->getFirstName()); ?>!</h1>
-    </div>
 
-    <!-- Use DIVS -->
-    <div class="use-parent">
-        <div class="electricitykwh">
-            <div>Uw verbruik: <?php echo $consumption->getElectricityConsumed(); ?> kWh</div>
-            <div class="icon1"></div>
+        <div class='console-container'>
+            <span id='text' class="console-welcome"></span>
+            <span id="user" class="console-welcome" data-first-name="<?php echo htmlspecialchars($user->getFirstName()); ?>"></span>
+            <div class='console-underscore' id='console'>&#95;</div>
         </div>
-        <div class="waterm3">
-            <div>Uw verbruik: <?php echo $consumption->getWaterConsumed(); ?> m³</div>
-            <div class="icon2"></div>
-        </div>
-    </div>
 
-    <!-- Visual use DIVS -->
-    <div class="tips-parent">
-        <div class="tips"> <!-- Here you can add dynamic tips based on consumption data --> </div>
+
+
+            <br>
+            <!-- Use DIVS -->
+            <div class="use-parent">
+                <div class="electricitykwh">
+                    <div class="test1">Uw verbruik: <br> <?php echo $consumption->getElectricityConsumed(); ?> kWh</div>
+                    <div class="icon1"></div>
+                </div>
+
+
+                <div class="waterm3">
+                    <div class="test2">Uw verbruik: <br>  <?php echo $consumption->getWaterConsumed(); ?> m³</div>
+                    <div class="icon2"></div>
+                </div>
+            </div>
+
+
+            <br>
+            <!-- Visual use DIVS -->
+            <div class="tips-parent">
+                <div class="tips"> 
+                    <h2>Tips:</h2>
+                </div>
+
+                <br>
+
+                <div class="tips-velden-container">
+                        <div class="tips-veld">Hier komt de tips</div>
+                        <div class="tips-veld">Hier komt de tips</div>
+                        <div class="tips-veld">Hier komt de tips</div>
+
+                    </div>
+            </div>
     </div>
-</div>
 
 </body>
 </html>

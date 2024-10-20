@@ -116,7 +116,7 @@ function generateTips($electricity, $water) {
 
     // Electricity tips
     if ($electricity <= 125) {
-        $tips[] = "Uw stroomverbruik is laag. U bent goed bezig";
+        $tips[] = "Uw stroomverbruik is laag. U bent goed bezig.";
     } elseif ($electricity <= 292) {
         $tips[] = "Uw stroomverbruik is gemiddeld. Gebruik energiezuinige apparaten en overweeg LED-verlichting.";
     } else {
@@ -125,7 +125,7 @@ function generateTips($electricity, $water) {
 
     // Water tips
     if ($water <= 42) {
-        $tips[] = "Uw waterverbruik is laag. Geweldig! U bent goed bezig!.";
+        $tips[] = "Uw waterverbruik is laag. Geweldig! U bent goed bezig!";
     } elseif ($water <= 100) {
         $tips[] = "Uw waterverbruik is gemiddeld. Overweeg een waterbesparende douchekop te installeren.";
     } else {
@@ -139,7 +139,7 @@ function generateTips($electricity, $water) {
 $tips = generateTips($consumption->getElectricityConsumed(), $consumption->getWaterConsumed());
 
 // Determine the icon colors based on consumption levels
-function getIconColor($consumption, $type) {
+function getIconClass($consumption, $type) {
     if ($type === 'electricity') {
         if ($consumption <= 125) {
             return 'green'; // Low usage
@@ -159,8 +159,8 @@ function getIconColor($consumption, $type) {
     }
 }
 
-$electricityColor = getIconColor($consumption->getElectricityConsumed(), 'electricity');
-$waterColor = getIconColor($consumption->getWaterConsumed(), 'water');
+$electricityClass = getIconClass($consumption->getElectricityConsumed(), 'electricity');
+$waterClass = getIconClass($consumption->getWaterConsumed(), 'water');
 
 ?>
 
@@ -171,51 +171,6 @@ $waterColor = getIconColor($consumption->getWaterConsumed(), 'water');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wireframe Layout</title>
     <link rel="stylesheet" type="text/css" href="homepage.css?<?php echo time(); ?>" />
-    <style>
-        .icon1 {
-            border: 4px solid rgba(0, 0, 0, 0);
-            border-bottom: 22px solid <?php echo $electricityColor; ?>; /* Use dynamic color */
-            transform: rotateZ(-160deg);
-            padding: 2px;
-            width: 0;
-            height: 0;
-            margin: 0;
-            overflow: visible;
-            border-top: 0 solid;
-            border-radius: 0;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%) rotateZ(-160deg);
-        }
-
-        .icon1:after {
-            content: "";
-            top: -9px;
-            left: -8px;
-            border: 5px solid rgba(0, 0, 0, 0);
-            border-bottom: 25px solid <?php echo $electricityColor; ?>; /* Use dynamic color */
-            transform: rotateZ(4deg);
-            padding: 0;
-            width: 0;
-            height: 0;
-            position: absolute;
-            margin: 0;
-            overflow: visible;
-            border-top: 0 solid;
-            border-radius: 0;
-        }
-
-        .icon2 {
-            position: absolute;
-            padding: 0;
-            margin: 0 auto;
-            width: 25px;
-            height: 25px;
-            border-radius: 0% 100% 100% 100%;
-            background-color: <?php echo $waterColor; ?>; /* Use dynamic color */
-            transform: rotate(45deg);
-        }
-    </style>
 </head>
 <body>
 <script src="animation.js" defer></script>
@@ -231,12 +186,12 @@ $waterColor = getIconColor($consumption->getWaterConsumed(), 'water');
         <div class="use-parent">
             <div class="electricitykwh">
                 <div class="test1">Uw verbruik: <br> <?php echo $consumption->getElectricityConsumed(); ?> kWh</div>
-                <div class="icon1"></div>
+                <div class="icon1 <?php echo $electricityClass; ?>"></div>
             </div>
 
             <div class="waterm3">
                 <div class="test2">Uw verbruik: <br> <?php echo $consumption->getWaterConsumed(); ?> m³</div>
-                <div class="icon2"></div>
+                <div class="icon2 <?php echo $waterClass; ?>"></div>
             </div>
         </div>
 

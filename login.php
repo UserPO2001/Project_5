@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="login.css"> <!-- Linking external CSS file -->
+    <link rel="stylesheet"  href="login.css?<?php echo time(); ?>" />
     <script>
         <?php if (isset($errorMessage)) { ?>
             window.onload = function() {

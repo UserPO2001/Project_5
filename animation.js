@@ -1,6 +1,6 @@
 // function([string1, string2],target id,[color1,color2])    
 var userFirstName = document.getElementById('user').getAttribute('data-first-name');
-consoleText([ 'Welcome, ' + userFirstName + '!','Your Consumption ',  ' + Personal Tips '], 'text', ['white', 'blue', '#ffdf00']);
+consoleText([ 'Welcome, ' + userFirstName + '!','Uw verbruik ',  ' + Persoonlijke tips '], 'text', ['white', 'blue', '#ffdf00']);
 
 
 function consoleText(words, id, colors) {

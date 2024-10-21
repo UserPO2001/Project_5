@@ -173,7 +173,7 @@ $waterClass = getIconClass($consumption->getWaterConsumed(), 'water');
     <link rel="stylesheet" type="text/css" href="homepage.css?<?php echo time(); ?>" />
 </head>
 <body>
-<script src="animation.js" defer></script>
+<script src="animation.js"  defer <?php echo time(); ?>></script>
     <div class="centre frame-div">
         <div class='console-container'>
             <span id='text' class="console-welcome"></span>

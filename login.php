@@ -37,10 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             header("Location: homepage.php");
             exit();
         } else {
-            $errorMessage = "Invalid password. Please try again.";
+            $errorMessage = "Ongeldig wachtwoord. Probeer het opnieuw..";
         }
     } else {
-        $errorMessage = "Username not found. Please try again.";
+        $errorMessage = "Gebruikersnaam niet gevonden. Probeer het opnieuw.";
     }
 }
 
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <!-- Bedrijfs naam DIV -->
     <div class="bedrijf-div">
         <div class="bedrijf-naam">
-            <h1>Energy With You</h1>
+            <h1>Energy App</h1>
         </div>
     </div>
     <form method="POST" action="login.php"> <!-- Set action to login.php -->
